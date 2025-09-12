@@ -1,50 +1,48 @@
-//SIT753 Jenkins Delivery Pipeline
+// SIT753 - Part 1 Task 1 - Theoretical Jenkins Pipeline Aakash Kumar Raj Task.
 pipeline {
     agent any
-    environment {
-        DIRECTORY_PATH = '/var/lib/jenkins/workspace/my-app'
-        TESTING_ENVIRONMENT = 'DevTest'
-        STAGING_ENVIRONMENT = 'Staging-SIT753'
-        PRODUCTION_ENVIRONMENT = 'SIT753 Aakash Jenkins Delivery Pipeline'
-    }
     stages {
         stage('Build') {
             steps {
-                echo "Fetch the source code from the directory path specified by the environment variable: ${env.DIRECTORY_PATH}"
-                echo "Compiling the code and making sure to generate any necessary artefacts"
+                echo "Task: Compile and package the code."
+                echo "Tool: Maven (Build Automation Tool)."
             }
         }
-        stage('Test') {
+        stage('Unit and Integration Tests') {
             steps {
-                echo "Unit tests"
-                echo "Integration tests"
+                echo "Task: Run unit tests and integration tests to validate code and component interactions."
+                echo "Tools: JUnit (Unit Testing), Selenium (Integration Testing)."
             }
         }
-        stage('Code Quality Check') {
+        stage('Code Analysis') {
             steps {
-                echo "Check the quality of the code"
+                echo "Task: Analyse the code quality and enforce coding standards."
+                echo "Tool: SonarQube (Static Code Analysis)."
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                echo "Task: Perform a security scan to detect vulnerabilities in dependencies and code."
+                echo "Tool: OWASP Dependency-Check or Snyk."
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                echo "Task: Deploy the application to a staging server."
+                echo "Tool: AWS EC2 instance (deployment target)."
             }
         }
         stage('Integration Tests on Staging') {
             steps {
-                echo "Deploying to staging environment: ${env.STAGING_ENVIRONMENT}"
-                echo "Running comprehensive integration tests on the staging environment"
-                echo "Validating that all application components work together as expected"
-                echo "Testing database connections, API integrations, and third-party services"
-                echo "Verifying application behavior in a production-like environment"
-                echo "Performance testing and load testing under staging conditions"
-            }
-        }
-        stage('Approval') {
-            steps {
-                echo "Waiting for manual approval based on staging environment test results..."
-                sleep 10 // Pause for 10 seconds to simulate manual approval
-                echo "Approval granted. Continuing pipeline."
+                echo "Task: Run integration tests in the staging environment to validate production-like behavior."
+                echo "Tools: Postman (API Testing), Selenium (UI Testing)."
             }
         }
         stage('Deploy to Production') {
             steps {
-                echo "Deploying code to production environment: ${env.PRODUCTION_ENVIRONMENT}"
+                echo "Task: Deploy the application to the production environment."
+                echo "Tool: AWS EC2 instance (production server)."
             }
+        }
     }
 }
