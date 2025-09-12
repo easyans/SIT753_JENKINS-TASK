@@ -1,0 +1,50 @@
+//SIT753 Jenkins Delivery Pipeline
+pipeline {
+    agent any
+    environment {
+        DIRECTORY_PATH = '/var/lib/jenkins/workspace/my-app'
+        TESTING_ENVIRONMENT = 'DevTest'
+        STAGING_ENVIRONMENT = 'Staging-SIT753'
+        PRODUCTION_ENVIRONMENT = 'SIT753 Aakash Jenkins Delivery Pipeline'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Fetch the source code from the directory path specified by the environment variable: ${env.DIRECTORY_PATH}"
+                echo "Compiling the code and making sure to generate any necessary artefacts"
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Unit tests"
+                echo "Integration tests"
+            }
+        }
+        stage('Code Quality Check') {
+            steps {
+                echo "Check the quality of the code"
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                echo "Deploying to staging environment: ${env.STAGING_ENVIRONMENT}"
+                echo "Running comprehensive integration tests on the staging environment"
+                echo "Validating that all application components work together as expected"
+                echo "Testing database connections, API integrations, and third-party services"
+                echo "Verifying application behavior in a production-like environment"
+                echo "Performance testing and load testing under staging conditions"
+            }
+        }
+        stage('Approval') {
+            steps {
+                echo "Waiting for manual approval based on staging environment test results..."
+                sleep 10 // Pause for 10 seconds to simulate manual approval
+                echo "Approval granted. Continuing pipeline."
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                echo "Deploying code to production environment: ${env.PRODUCTION_ENVIRONMENT}"
+            }
+    }
+}
