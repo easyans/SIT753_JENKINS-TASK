@@ -1,4 +1,5 @@
-// SIT753 - Part 1 Task 1 - Theoretical Jenkins Pipeline Aakash Kumar Raj Task.
+// SIT753 - Part 1 Task 1 - Theoretical Jenkins Pipeline
+// Author: Aakash Kumar Raj
 pipeline {
     agent any
     stages {
@@ -42,6 +43,11 @@ pipeline {
             steps {
                 echo "Task: Deploy the application to the production environment successfully."
                 echo "Tool: AWS EC2 instance (production server)."
+            }
+        }
+        stage('Completed') {
+            steps {
+                echo "Pipeline completed successfully."
             }
         }
     }
