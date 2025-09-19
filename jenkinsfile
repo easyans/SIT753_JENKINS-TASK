@@ -1,5 +1,5 @@
-// SIT753 - Part 1 Task 1 - Theoretical Jenkins Pipeline
-// Author: Aakash Kumar Raj
+// SIT753 - Part 1 Task 1
+// Author: Aakash Kumar Raj Sakhineti
 pipeline {
     agent any
     stages {
